@@ -1,2 +1,147 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+// Estructura para representar un estudiante
+struct Estudiante {
+    string nombre;
+    string apellido;
+    int edad;
+    string carrera;
+};
+
+// Estructura para representar un curso
+struct Curso {
+    string nombre;
+    string codigo;
+    int creditos;
+};
+
+// Estructura para representar una matricula
+struct Matricula {
+    Estudiante estudiante;
+    Curso curso;
+    int nota;
+};
+
+// Vector para almacenar estudiantes
+vector<Estudiante> estudiantes;
+
+// Vector para almacenar cursos
+vector<Curso> cursos;
+
+// Vector para almacenar matriculas
+vector<Matricula> matriculas;
+
+// Función para registrar un estudiante
+void registrarEstudiante() {
+    Estudiante estudiante;
+    cout << "Ingrese nombre: ";
+    cin >> estudiante.nombre;
+    cout << "Ingrese apellido: ";
+    cin >> estudiante.apellido;
+    cout << "Ingrese edad: ";
+    cin >> estudiante.edad;
+    cout << "Ingrese carrera: ";
+    cin >> estudiante.carrera;
+    estudiantes.push_back(estudiante);
+}
+
+// Función para registrar un curso
+void registrarCurso() {
+    Curso curso;
+    cout << "Ingrese nombre: ";
+    cin >> curso.nombre;
+    cout << "Ingrese código: ";
+    cin >> curso.codigo;
+    cout << "Ingrese créditos: ";
+    cin >> curso.creditos;
+    cursos.push_back(curso);
+}
+
+// Función para registrar una matricula
+void registrarMatricula() {
+    Matricula matricula;
+    cout << "Seleccione estudiante: ";
+    for (int i = 0; i < estudiantes.size(); i++) {
+        cout << i + 1 << ". " << estudiantes[i].nombre << " " << estudiantes[i].apellido << endl;
+    }
+    int seleccion;
+    cin >> seleccion;
+    matricula.estudiante = estudiantes[seleccion - 1];
+    cout << "Seleccione curso: ";
+    for (int i = 0; i < cursos.size(); i++) {
+        cout << i + 1 << ". " << cursos[i].nombre << " " << cursos[i].codigo << endl;
+    }
+    cin >> seleccion;
+    matricula.curso = cursos[seleccion - 1];
+    cout << "Ingrese nota: ";
+    cin >> matricula.nota;
+    matriculas.push_back(matricula);
+}
+
+// Función para mostrar estudiantes
+void mostrarEstudiantes() {
+    cout << "Estudiantes registrados:" << endl;
+    for (int i = 0; i < estudiantes.size(); i++) {
+        cout << i + 1 << ". " << estudiantes[i].nombre << " " << estudiantes[i].apellido << endl;
+    }
+}
+
+// Función para mostrar cursos
+void mostrarCursos() {
+    cout << "Cursos registrados:" << endl;
+    for (int i = 0; i < cursos.size(); i++) {
+        cout << i + 1 << ". " << cursos[i].nombre << " " << cursos[i].codigo << endl;
+    }
+}
+
+// Función para mostrar matriculas
+void mostrarMatriculas() {
+    cout << "Matriculas registradas:" << endl;
+    for (int i = 0; i < matriculas.size(); i++) {
+        cout << i + 1 << ". " << matriculas[i].estudiante.nombre << " " << matriculas[i].estudiante.apellido << " - " << matriculas[i].curso.nombre << " " << matriculas[i].curso.codigo << endl;
+    }
+}
+
+int main() {
+    int opcion;
+    do {
+        cout << "Menú de gestión de estudiantes" << endl;
+        cout << "1. Registrar estudiante" << endl;
+        cout << "2. Registrar curso" << endl;
+        cout << "3. Registrar matricula" << endl;
+        cout << "4. Mostrar estudiantes" << endl;
+        cout << "5. Mostrar cursos" << endl;
+        cout << "6. Mostrar matriculas" << endl;
+        cout << "7. Salir" << endl;
+        cin >> opcion;
+        switch (opcion) {
+            case 1:
+                registrarEstudiante();
+                break;
+            case 2:
+                registrarCurso();
+                break;
+            case 3:
+                registrarMatricula();
+                break;
+            case 4:
+                mostrarEstudiantes();
+                break;
+            case 5:
+                mostrarCursos();
+                break;
+            case 6:
+                mostrarMatriculas();
+                break;
+            case 7:
+                cout << "Adiós" << endl;
+                break;
+            default:
+                cout << "Opción inválida" << endl;
+                break;
+
